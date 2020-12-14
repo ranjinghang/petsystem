@@ -13,4 +13,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface DogorderDao extends JpaRepository<Dogorder, Long> {
+
+    Dogorder save(Dogorder dogorder);
 }

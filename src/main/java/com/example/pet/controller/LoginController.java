@@ -65,4 +65,9 @@ public class LoginController {
         return new ModelAndView("reader_main");
     }
 
+    @RequestMapping("/reader_header.html")
+    public ModelAndView readerHeader(HttpServletResponse response) {
+        return new ModelAndView("reader_header");
+    }
+
 }

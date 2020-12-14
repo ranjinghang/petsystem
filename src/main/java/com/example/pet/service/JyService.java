@@ -1,5 +1,6 @@
 package com.example.pet.service;
 
+import com.example.pet.bean.Jy;
 import com.example.pet.dao.JyDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,4 +16,8 @@ import org.springframework.stereotype.Service;
 public class JyService {
     @Autowired
     private JyDao jyDao;
+
+    public Jy insertOne(Jy jy){
+        return jyDao.save(jy);
+    }
 }

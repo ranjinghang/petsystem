@@ -7,12 +7,12 @@
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li class="active">
-                    <a href="reader_books.html">
+                    <a href="/pet/listView">
                         查看宠物列表
                     </a>
                 </li>
                 <li>
-                    <a href="reader_info.html" >
+                    <a href="/order/listView" >
                         查看订单
                     </a>
                 </li>

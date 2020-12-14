@@ -7,7 +7,7 @@
     <script src="/static/js/bootstrap.min.js" ></script>
     <script>
         $(function () {
-            $('#header').load('reader_header.html');
+            $('#header').load('/reader_header.html');
         })
     </script>
 </head>
