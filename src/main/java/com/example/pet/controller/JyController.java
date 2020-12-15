@@ -7,8 +7,12 @@ import com.example.pet.service.DogorderService;
 import com.example.pet.service.JyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author ranjinghang@haier.com
@@ -33,5 +37,13 @@ public class JyController {
         jyService.insertOne(jy);
 
         return "申请成功";
+    }
+
+    @RequestMapping("/jy/listView")
+    public String jyListView(Model model){
+        List<Jy> jyList = new ArrayList<>();
+        jyList = jyService.getJyListByAdminId();
+        model.addAttribute("jyList", jyList);
+        return "admin_jy_list";
     }
 }

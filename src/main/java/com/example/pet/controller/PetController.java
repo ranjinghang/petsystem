@@ -3,6 +3,7 @@ import java.math.BigDecimal;
 
 import com.example.pet.bean.Dogorder;
 import com.example.pet.bean.Pet;
+import com.example.pet.bean.VO.ChangePetVO;
 import com.example.pet.bean.VO.PetBuyVO;
 import com.example.pet.service.DogorderService;
 import com.example.pet.service.PetService;
@@ -36,11 +37,14 @@ public class PetController {
     @Autowired
     private DogorderService dogorderService;
 
-    @RequestMapping("/pet/listView")
-    public String getPetListView(Model model){
+    @RequestMapping("/pet/listView?{type}")
+    public String getPetListView(Model model, @PathVariable("type") int type){
         List<Pet> petList = petService.getAllPet();
-
         model.addAttribute("petList",petList);
+        if (type == 1){
+            return "admin_pet_list";
+        }
+
         return "pet_list";
     }
 
@@ -67,4 +71,37 @@ public class PetController {
         return "购买成功";
     }
 
+    @RequestMapping("/pet/changeView?{petId}")
+    public String getPetChangeView(Model model, @PathVariable("petId") Long petId){
+        model.addAttribute("petId",petId);
+        return "admin_pet_change";
+    }
+
+    @RequestMapping(value = "/pet/changeView?{petId}", method = RequestMethod.POST)
+    public String changePet(Model model, @RequestBody ChangePetVO changePetVO, @PathVariable("petId") Long petId){
+        Pet pet = new Pet();
+        pet.setPetId(petId);
+        pet.setPetName(changePetVO.getPetName());
+        pet.setPetSpecial(changePetVO.getPetSpeical());
+        pet.setPetPrice(changePetVO.getPrice());
+
+        petService.save(pet);
+        return "修改成功";
+    }
+
+    @RequestMapping("/pet/addView")
+    public String getPetAddView(Model model){
+        return "admin_pet_add";
+    }
+
+    @RequestMapping(value = "/pet/add", method = RequestMethod.POST)
+    public String petAdd(Model model, @RequestBody ChangePetVO changePetVO){
+        Pet pet = new Pet();
+        pet.setPetName(changePetVO.getPetName());
+        pet.setPetSpecial(changePetVO.getPetSpeical());
+        pet.setPetPrice(changePetVO.getPrice());
+        pet.setAdminId("");
+
+        return "添加成功";
+    }
 }

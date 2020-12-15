@@ -5,6 +5,8 @@ import com.example.pet.dao.JyDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author ranjinghang@haier.com
  * @version V1.0.0
@@ -19,5 +21,9 @@ public class JyService {
 
     public Jy insertOne(Jy jy){
         return jyDao.save(jy);
+    }
+
+    public List<Jy> getJyListByAdminId(){
+        return jyDao.jyViewList();
     }
 }

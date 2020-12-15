@@ -3,7 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
-    <title>图书信息添加</title>
+    <title>宠物信息修改</title>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <script src="/static/js/jquery-3.2.1.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
@@ -15,7 +15,7 @@
     </style>
     <script>
         $(function () {
-            $('#header').load('/reader_header.html');
+            $('#header').load('/admin_header.html');
         })
     </script>
 </head>
@@ -25,24 +25,31 @@ background-attachment: fixed;">
 
 <div id="header"></div>
 <div style="position: relative;padding-top: 60px; width: 80%;margin-left: 10%">
-    <form action="/pet/buy?petId=<c:out value="${pet.petId}">" method="post" id="buypet">
+    <form action="/pet/change?petId=<c:out value="${pet.petId}">" method="post" id="petChange">
         <div class="form-group">
-            <label for="count">数量</label>
-            <input type="text" class="form-control" name="count" id="count" placeholder="请输入数量">
+            <label for="petName">宠物名称</label>
+            <input type="text" class="form-control" name="petName" id="petName" placeholder="请输入宠物名称">
+        </div>
+        <div class="form-group">
+            <label for="petSpeical">宠物种类</label>
+            <input type="text" class="form-control" name="petSpeical" id="petSpeical" placeholder="请输入宠物种类">
+        </div>
+        <div class="form-group">
+            <label for="petPrice">宠物价格</label>
+            <input type="text" class="form-control" name="petPrice" id="petPrice" placeholder="请输入宠物价格">
         </div>
 
-        <input id ="buypetSubmit"type="submit" value="添加" class="btn btn-success btn-sm" class="text-left">
+        <input type="submit" value="修改" class="btn btn-success btn-sm" class="text-left">
         <script>
-            $("#buypet").submit(function () {
-                if ($("#count").val() == '') {
-                    alert("请填入数量！");
+            $("#petChange").submit(function () {
+                if ($("#petName").val() == '' || $("#petSpeical").val() == '' || $("#petPrice").val() == '' ){
                     return false;
                 }
             })
 
             $(function() {
                 /** 验证文件是否导入成功  */
-                $("#buypet").ajaxForm(function(data){
+                $("#petChange").ajaxForm(function(data){
                     setMessage(data);
                     alert(data);
                 });
@@ -50,8 +57,5 @@ background-attachment: fixed;">
         </script>
     </form>
 </div>
-<script type="text/javascript">
-
-</script>
 </body>
 </html>

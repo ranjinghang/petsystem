@@ -26,4 +26,8 @@ public class PetService {
     public Pet getById(Long petId){
         return petDao.getOne(petId);
     }
+
+    public Pet save(Pet pet) {
+        return petDao.save(pet);
+    }
 }

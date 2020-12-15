@@ -70,4 +70,9 @@ public class LoginController {
         return new ModelAndView("reader_header");
     }
 
+    @RequestMapping("/admin_header.html")
+    public ModelAndView adminHeader(HttpServletResponse response) {
+        return new ModelAndView("admin_header");
+    }
+
 }

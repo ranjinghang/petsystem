@@ -3,16 +3,16 @@
 <html>
 <head>
     <title>管理主页</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/jquery-3.2.1.js"></script>
-    <script src="js/bootstrap.min.js" ></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <script src="/static/js/jquery-3.2.1.js"></script>
+    <script src="/static/js/bootstrap.min.js" ></script>
     <script>
         $(function () {
-            $('#header').load('admin_header.html');
+            $('#header').load('/admin_header.html');
         })
     </script>
 </head>
-<body background="img/book2.jpg" style=" background-repeat:no-repeat ;
+<body background="/static/img/book2.jpg" style=" background-repeat:no-repeat ;
 background-size:100% 100%;
 background-attachment: fixed;">
 
