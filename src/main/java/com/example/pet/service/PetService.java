@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author ranjinghang@haier.com
+ * @author
  * @version V1.0.0
  * @date
  * @description 类注释
- * @Copyright www.haiermoney.comInc. All rights reserved.
+ * @Copyright All rights reserved.
  */
 @Service
 public class PetService {

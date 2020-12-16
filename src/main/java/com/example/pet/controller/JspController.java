@@ -7,11 +7,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author ranjinghang@haier.com
+ * @author
  * @version V1.0.0
  * @date \
  * @description 类注释
- * @Copyright www.haiermoney.comInc. All rights reserved.
+ * @Copyright . All rights reserved.
  */
 @RestController
 public class JspController {

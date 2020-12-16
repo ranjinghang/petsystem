@@ -9,7 +9,7 @@ import javax.persistence.Table;
  * @version V1.0.0
  * @date
  * @description 类注释
- * @Copyright www.haiermoney.comInc. All rights reserved.
+ * @Copyright All rights reserved.
  */
 @Entity
 @Table(name = "pet")

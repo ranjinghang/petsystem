@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @author cranjinghang@haier.com
+ * @author
  * @version V1.0.0
  * @date
  * @description 接口注释
- * @Copyright www.haiermoney.comInc. All rights reserved.
+ * @Copyright  All rights reserved.
  */
 @Repository
 public interface DogorderDao extends JpaRepository<Dogorder, Long> {
