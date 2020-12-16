@@ -36,16 +36,22 @@ background-attachment: fixed;">
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${petList}" var="pet">
+            <c:forEach items="${jyListVOList}" var="jyVO">
                 <tr>
-                    <td><c:out value="${pet.petName}"></c:out></td>
-                    <td><c:out value="${pet.petSpecial}"></c:out></td>
-                    <td><c:out value="${pet.petPrice}"></c:out></td>
+                    <td><c:out value="${jyVO.petName}"></c:out></td>
+                    <td><c:out value="${jyVO.orderName}"></c:out></td>
+                    <td><c:out value="${jyVO.petSpecial}"></c:out></td>
+                    <td><c:out value="${jyVO.num}"></c:out></td>
+                    <td><c:out value="${jyVO.carateTime}"></c:out></td>
 
-                    <td><a href="/pet/changeView?petId=<c:out value="${pet.petId}"></c:out>">
-                        <button type="button" class="btn btn-danger btn-xs">修改</button>
-                    </a></td>
-
+                    <c:if test="${empty jyVO.status}">
+                        <td><a href="/jy/agree?jyId=<c:out value="${jyVO.jyId}"></c:out>">
+                            <button type="button" class="btn btn-danger btn-xs">同意申请</button>
+                        </a></td>
+                    </c:if>
+                    <c:if test="${not empty jyVO.status}">
+                        <td>已同意</td>
+                    </c:if>
                 </tr>
             </c:forEach>
             </tbody>

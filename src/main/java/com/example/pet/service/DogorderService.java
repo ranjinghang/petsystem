@@ -1,6 +1,7 @@
 package com.example.pet.service;
 
 import com.example.pet.bean.Dogorder;
+import com.example.pet.bean.VO.OrderVO;
 import com.example.pet.dao.DogorderDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,9 @@ public class DogorderService {
 
     public void deleteById(Long orderNo){
         dogorderDao.deleteById(orderNo);
+    }
+
+    public List<OrderVO> getOrderListVO(){
+        return dogorderDao.getOrderListVO();
     }
 }

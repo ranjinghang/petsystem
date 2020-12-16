@@ -73,12 +73,13 @@ background-attachment: fixed;">
                 <th>购买时间</th>
                 <th>购买数据</th>
                 <th>评价</th>
-                <th>操作</th>
+                <th>寄养操作</th>
+                <th>售后操作</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${orderList}" var="order">
-                <tr>
+                <td>
                     <td><c:out value="${order.orderName}"></c:out></td>
                     <td><c:out value="${order.createTime}"></c:out></td>
                     <td><c:out value="${order.num}"></c:out></td>
@@ -89,9 +90,26 @@ background-attachment: fixed;">
                                 <button type="button" class="btn btn-danger btn-xs">评价</button>
                             </a>
                         </c:if>
-                        <a href="/Jy/insert?orderNo=<c:out value="${order.orderNo}"></c:out>">
-                            <button type="button" class="btn btn-danger btn-xs">申请寄养</button>
-                        </a>
+                        <c:if test="${not empty order.evaluate}">
+                            <c:out value="${order.evaluate}"></c:out>
+                        </c:if>
+                    </td>
+                    <td>
+                        <c:if test="${empty order.jyId}">
+                            <a href="/Jy/insert?orderNo=<c:out value="${order.orderNo}"></c:out>">
+                                <button type="button" class="btn btn-danger btn-xs">申请寄养</button>
+                            </a>
+                        </c:if>
+                        <c:if test="${not empty order.jyId}">
+                            <c:if test="${order.agree eq 0}">
+                                等待管理员同意
+                            </c:if>
+                            <c:if test="${order.agree eq 1}">
+                                已寄养
+                            </c:if>
+                        </c:if>
+                    </td>
+                    </td>
                         <a href="/order/delete?orderNo=<c:out value="${order.orderNo}"></c:out>">
                             <button type="button" class="btn btn-danger btn-xs">售后</button>
                         </a>

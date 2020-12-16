@@ -1,6 +1,7 @@
 package com.example.pet.controller;
 
 import com.example.pet.bean.Dogorder;
+import com.example.pet.bean.VO.OrderVO;
 import com.example.pet.service.DogorderService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class OrderController {
 
     @RequestMapping("/order/listView")
     public String orderListView(Model model){
-        List<Dogorder> dogorderList = dogorderService.getAllOrder();
+        List<OrderVO> dogorderList = dogorderService.getOrderListVO();
 
         model.addAttribute("orderList",dogorderList);
         return "order_list";

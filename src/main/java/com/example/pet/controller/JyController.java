@@ -2,6 +2,7 @@ package com.example.pet.controller;
 
 import com.example.pet.bean.Dogorder;
 import com.example.pet.bean.Jy;
+import com.example.pet.bean.VO.JyListVO;
 import com.example.pet.dao.DogorderDao;
 import com.example.pet.service.DogorderService;
 import com.example.pet.service.JyService;
@@ -41,9 +42,20 @@ public class JyController {
 
     @RequestMapping("/jy/listView")
     public String jyListView(Model model){
-        List<Jy> jyList = new ArrayList<>();
-        jyList = jyService.getJyListByAdminId();
-        model.addAttribute("jyList", jyList);
+        List<JyListVO> jyListVOList = new ArrayList<>();
+        jyListVOList = jyService.getJyListByAdminId();
+        model.addAttribute("jyListVOList", jyListVOList);
         return "admin_jy_list";
+    }
+
+    @RequestMapping("/jy/agree?{jyId}")
+    private String jyAgree(Model model, @PathVariable("jyId") Long jyId){
+        Jy jy = new Jy();
+        jy.setjId(jyId);
+        jy.setAgree(1);
+
+        jy = jyService.insertOne(jy);
+
+        return "修改成功";
     }
 }

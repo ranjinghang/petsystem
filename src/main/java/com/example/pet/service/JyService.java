@@ -1,6 +1,7 @@
 package com.example.pet.service;
 
 import com.example.pet.bean.Jy;
+import com.example.pet.bean.VO.JyListVO;
 import com.example.pet.dao.JyDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class JyService {
         return jyDao.save(jy);
     }
 
-    public List<Jy> getJyListByAdminId(){
+    public List<JyListVO> getJyListByAdminId(){
         return jyDao.jyViewList();
     }
 }
