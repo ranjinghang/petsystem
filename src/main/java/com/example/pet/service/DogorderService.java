@@ -6,7 +6,9 @@ import com.example.pet.dao.DogorderDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @version V1.0.0
@@ -34,7 +36,7 @@ public class DogorderService {
         dogorderDao.deleteById(orderNo);
     }
 
-    public List<OrderVO> getOrderListVO(){
+    public List<Map<String, Object>> getOrderListVO(){
         return dogorderDao.getOrderListVO();
     }
 }

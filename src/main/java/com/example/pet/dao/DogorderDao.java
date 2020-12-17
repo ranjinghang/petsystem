@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author
@@ -20,19 +22,17 @@ public interface DogorderDao extends JpaRepository<Dogorder, Long> {
 
     Dogorder save(Dogorder dogorder);
 
-    @Query(value = "SELECT\n" +
-            "\tdogorder.order_name, \n" +
-            "\tdogorder.create_time, \n" +
-            "\tdogorder.num, \n" +
-            "\tdogorder.evaluate, \n" +
-            "\tjy.j_id, \n" +
-            "\tjy.`status`, \n" +
-            "\tjy.agree\n" +
-            "FROM\n" +
-            "\tdogorder\n" +
-            "\tINNER JOIN\n" +
-            "\tjy\n" +
-            "WHERE\n" +
-            "\tdogorder.order_no = jy.order_no",nativeQuery = true)
-    List<OrderVO> getOrderListVO();
+    @Query(value = "SELECT dogorder.order_name AS orderName," +
+            "dogorder.create_time AS createTime," +
+            "dogorder.num AS num," +
+            "dogorder.evaluate AS evaluate," +
+            "dogorder.order_no AS orderNo," +
+            "jy.j_id AS jyId," +
+            "jy.`status` AS `status`," +
+            "jy.agree AS agree " +
+            "FROM "+
+            "dogorder " +
+            "INNER JOIN jy " +
+            "WHERE dogorder.order_no = jy.order_no",nativeQuery = true)
+    List<Map<String,Object>> getOrderListVO();
 }

@@ -1,5 +1,7 @@
 package com.example.pet.bean.VO;
 
+import java.math.BigInteger;
+
 /**
  * @author
  * @version V1.0.0
@@ -10,12 +12,26 @@ package com.example.pet.bean.VO;
 public class OrderVO {
     private String orderName;
     private String createTime;
-    private String num;
+    private Integer num;
     private String evaluate;
-    private Long orderNo;
-    private Long jyId;
-    private int status;
-    private int agree;
+    private BigInteger orderNo;
+    private BigInteger jyId;
+    private Integer status;
+    private Integer agree;
+
+    public OrderVO() {
+    }
+
+    public OrderVO(String orderName, String createTime, Integer num, String evaluate, BigInteger orderNo, BigInteger jyId, int status, int agree) {
+        this.orderName = orderName;
+        this.createTime = createTime;
+        this.num = num;
+        this.evaluate = evaluate;
+        this.orderNo = orderNo;
+        this.jyId = jyId;
+        this.status = status;
+        this.agree = agree;
+    }
 
     public String getOrderName() {
         return orderName;
@@ -33,11 +49,11 @@ public class OrderVO {
         this.createTime = createTime;
     }
 
-    public String getNum() {
+    public Integer getNum() {
         return num;
     }
 
-    public void setNum(String num) {
+    public void setNum(Integer num) {
         this.num = num;
     }
 
@@ -49,35 +65,35 @@ public class OrderVO {
         this.evaluate = evaluate;
     }
 
-    public Long getOrderNo() {
+    public BigInteger getOrderNo() {
         return orderNo;
     }
 
-    public void setOrderNo(Long orderNo) {
+    public void setOrderNo(BigInteger orderNo) {
         this.orderNo = orderNo;
     }
 
-    public Long getJyId() {
+    public BigInteger getJyId() {
         return jyId;
     }
 
-    public void setJyId(Long jyId) {
+    public void setJyId(BigInteger jyId) {
         this.jyId = jyId;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public int getAgree() {
+    public Integer getAgree() {
         return agree;
     }
 
-    public void setAgree(int agree) {
+    public void setAgree(Integer agree) {
         this.agree = agree;
     }
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,8 +38,8 @@ public class PetController {
     @Autowired
     private DogorderService dogorderService;
 
-    @RequestMapping("/pet/listView?{type}")
-    public String getPetListView(Model model, @PathVariable("type") int type){
+    @RequestMapping("/pet/listView")
+    public String getPetListView(Model model, @RequestParam("type") int type){
         List<Pet> petList = petService.getAllPet();
         model.addAttribute("petList",petList);
         if (type == 1){
