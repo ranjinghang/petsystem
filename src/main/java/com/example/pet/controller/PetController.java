@@ -63,9 +63,10 @@ public class PetController {
         dogorder.setOrderName("购买订单");
         dogorder.setUserId("");
         dogorder.setPetId(petId.toString());
+        Pet pet = petService.getById(petId);
         String format = "YYYY-MM-dd hh:mm:ss";
         dogorder.setCreateTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern(format)));
-        dogorder.setAmount(new BigDecimal(petBuyVO.getCount()));
+        dogorder.setAmount(new BigDecimal(petBuyVO.getCount()).multiply(new BigDecimal(Double.valueOf(pet.getPetPrice()))));
         dogorder.setNum(petBuyVO.getCount());
 
         dogorderService.insertOrder(dogorder);
