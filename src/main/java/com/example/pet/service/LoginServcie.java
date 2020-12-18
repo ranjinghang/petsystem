@@ -21,4 +21,8 @@ public class LoginServcie {
         Login login = loginDao.getByUserIdAndPw(id, password);
         return login;
     }
+
+    public Login save(Login login){
+        return loginDao.save(login);
+    }
 }

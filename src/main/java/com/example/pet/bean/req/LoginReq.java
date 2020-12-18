@@ -10,6 +10,7 @@ package com.example.pet.bean.req;
 public class LoginReq {
     private String userId;
     private String password;
+    private String type;
 
     public String getUserId() {
         return userId;
@@ -25,5 +26,13 @@ public class LoginReq {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

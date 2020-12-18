@@ -55,6 +55,26 @@ public class LoginController {
         return res;
     }
 
+    @RequestMapping(value = "/login/register", method = RequestMethod.POST, consumes = "application/json")
+    public Object register(@RequestBody LoginReq loginReq) {
+        HashMap<String, String> res = new HashMap<>();
+        Login login = new Login();
+        login.setUserId(loginReq.getUserId());
+        login.setPw(loginReq.getPassword());
+        login.setType(loginReq.getType());
+        login = loginServcie.save(login);
+
+        if (login != null){
+            res.put("stateCode", "1");
+            res.put("msg", "注册成功！");
+        }else {
+            res.put("stateCode", "0");
+            res.put("msg", "注册失败！");
+        }
+
+        return res;
+    }
+
     @RequestMapping("/login/adminLogin")
     public ModelAndView toAdminMain(HttpServletResponse response) {
         return new ModelAndView("admin_main");
@@ -73,6 +93,11 @@ public class LoginController {
     @RequestMapping("/admin_header.html")
     public ModelAndView adminHeader(HttpServletResponse response) {
         return new ModelAndView("admin_header");
+    }
+
+    @RequestMapping("/login/registerView")
+    public ModelAndView register(HttpServletResponse response) {
+        return new ModelAndView("login_register");
     }
 
 }

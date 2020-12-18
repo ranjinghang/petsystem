@@ -65,6 +65,8 @@ background-attachment: fixed;">
         <p style="text-align: right;color: red;position: absolute" id="info"></p><br/>
         <button id="loginButton"  class="btn btn-primary  btn-block">登陆
         </button>
+        <button id="registerButton"  class="btn btn-primary  btn-block">没有账号请注册登陆
+        </button>
     </div>
 </div>
     <script>
@@ -142,6 +144,10 @@ background-attachment: fixed;">
                     }
                 });
             }
+        })
+
+        $("#registerButton").click(function () {
+            window.location.href = "/login/registerView";
         })
 
     </script>

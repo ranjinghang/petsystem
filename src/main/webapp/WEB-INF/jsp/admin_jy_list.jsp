@@ -71,7 +71,7 @@ background-attachment: fixed;">
             success: function (data) {
                 //表示注册不成功，由于控制器返回的是map，所以就可以用data[key]
                 alert(data.msg);
-                window.location.href = "/order/listView";
+                window.location.href = "/jy/listView";
             },
             error: function (data) {
                 alert(data);
