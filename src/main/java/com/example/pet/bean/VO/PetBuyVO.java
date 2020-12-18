@@ -9,7 +9,6 @@ package com.example.pet.bean.VO;
  */
 public class PetBuyVO {
     private int count;
-    private Long petId;
 
     public int getCount() {
         return count;
@@ -17,13 +16,5 @@ public class PetBuyVO {
 
     public void setCount(int count) {
         this.count = count;
-    }
-
-    public Long getPetId() {
-        return petId;
-    }
-
-    public void setPetId(Long petId) {
-        this.petId = petId;
     }
 }

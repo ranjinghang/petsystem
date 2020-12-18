@@ -17,11 +17,6 @@
                     </a>
                 </li>
                 <li >
-                    <a href="mylend.html" >
-                        申请寄养
-                    </a>
-                </li>
-                <li >
                     <a href="reader_repasswd.html" >
                         密码修改
                     </a>

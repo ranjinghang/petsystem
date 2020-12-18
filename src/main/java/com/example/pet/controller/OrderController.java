@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.List;
@@ -48,12 +50,15 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/order/evaluate", method = RequestMethod.POST)
-    public String orderEvaluate(Model model, @RequestParam("orderNo") Long orderNo, @RequestBody String eva){
+    @ResponseBody
+    public Map<String, Object> orderEvaluate(Model model, @RequestParam("orderNo") Long orderNo, @RequestBody Map<String, Object> eva){
         Dogorder dogorder = dogorderService.getById(orderNo);
-        dogorder.setEvaluate(eva);
+        dogorder.setEvaluate(eva.get("eva").toString());
         dogorderService.insertOrder(dogorder);
 
-        return "评价成功";
+        HashMap hashMap = new HashMap();
+        hashMap.put("msg", "评价成功");
+        return hashMap;
     }
 
     @RequestMapping("/order/delete")

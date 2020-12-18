@@ -23,33 +23,44 @@ background-attachment: fixed;">
 
 <div id="header"></div>
 <div style="position: relative;padding-top: 60px; width: 80%;margin-left: 10%">
-    <form action="/order/evaluate?{orderNo}" method="post" id="evaluate">
+    <form action="#" method="post" id="evaluate">
         <div class="form-group">
             <label for="eva">评价</label>
             <input type="text" class="form-control" name="eva" id="eva" placeholder="请输入评价内容">
         </div>
 
-        <input id ="evaSubmit"type="submit" value="评价" class="btn btn-success btn-sm" class="text-left">
+        <input id ="evaSubmit" type="button" value="评价" class="btn btn-success btn-sm" class="text-left">
         <script>
-            $("#evaluate").submit(function () {
+            $("#evaSubmit").click(function () {
+                var dataStr = {
+                    "eva" : $("#eva").val()
+                };
                 if ($("#eva").val() == '') {
-                    alert("请填入评价内容！");
+                    alert("请填入评价内容！" );
                     return false;
+                }else {
+
+                    $.ajax({
+                        type: "POST",//方法类型
+                        dataType: "json",//预期服务器返回的数据类型
+                        url: "/order/evaluate?orderNo=${orderNo}",//要响应的url
+                        data: JSON.stringify(dataStr),
+                        async: false,   //false为同步，true为异步
+                        contentType: "application/json",
+                        success: function (data) {
+                            //表示注册不成功，由于控制器返回的是map，所以就可以用data[key]
+                            alert(data.msg);
+                            window.location.href = "/order/listView";
+                        },
+                        error: function (data) {
+                            alert(data);
+                        }
+                    });
                 }
             })
 
-            $(function() {
-                /** 验证文件是否导入成功  */
-                $("#evaluate").ajaxForm(function(data){
-                    setMessage(data);
-                    alert(data);
-                });
-            });
         </script>
     </form>
 </div>
-<script type="text/javascript">
-
-</script>
 </body>
 </html>

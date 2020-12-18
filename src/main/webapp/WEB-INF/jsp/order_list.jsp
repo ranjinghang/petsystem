@@ -79,11 +79,10 @@ background-attachment: fixed;">
             </thead>
             <tbody>
             <c:forEach items="${orderList}" var="order">
-                <td>
+                <tr>
                     <td><c:out value="${order.orderName}"></c:out></td>
                     <td><c:out value="${order.createTime}"></c:out></td>
                     <td><c:out value="${order.num}"></c:out></td>
-                    <td><c:out value="${order.evaluate}"></c:out></td>
                     <td>
                         <c:if test="${empty order.evaluate}">
                             <a href="/order/evaluateView?orderNo=<c:out value="${order.orderNo}"></c:out>">
@@ -109,10 +108,10 @@ background-attachment: fixed;">
                             </c:if>
                         </c:if>
                     </td>
-                    </td>
-                        <a href="/order/delete?orderNo=<c:out value="${order.orderNo}"></c:out>">
-                            <button type="button" class="btn btn-danger btn-xs">售后</button>
-                        </a>
+                    <td>
+                    <a href="/order/delete?orderNo=<c:out value="${order.orderNo}"></c:out>">
+                        <button type="button" class="btn btn-danger btn-xs">售后</button>
+                    </a>
                     </td>
                 </tr>
             </c:forEach>

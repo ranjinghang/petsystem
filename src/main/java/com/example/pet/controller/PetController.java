@@ -22,7 +22,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author
@@ -49,19 +51,18 @@ public class PetController {
         return "pet_list";
     }
 
-    @RequestMapping("/pet/buyView?{petId}")
-    public String getPetBuyView(Model model, @PathVariable("petId") Long petId){
+    @RequestMapping("/pet/buyView")
+    public String getPetBuyView(Model model, @RequestParam("petId") Long petId){
         model.addAttribute("petId",petId);
-        return "pet_list";
+        return "pet_buy";
     }
 
-    @RequestMapping(value = "/pet/buy?{petId}", method = RequestMethod.POST)
-    public String petBuy(@PathVariable("petId") Long petId,@RequestBody PetBuyVO petBuyVO){
+    @RequestMapping(value = "/pet/buy", method = RequestMethod.POST)
+    public Map<String, Object> petBuy(@RequestParam("petId") Long petId, @RequestBody PetBuyVO petBuyVO){
         Dogorder dogorder = new Dogorder();
         dogorder.setOrderName("购买订单");
         dogorder.setUserId("");
         dogorder.setPetId(petId.toString());
-        dogorder.setPetId(petBuyVO.getPetId().toString());
         String format = "YYYY-MM-dd hh:mm:ss";
         dogorder.setCreateTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern(format)));
         dogorder.setAmount(new BigDecimal(petBuyVO.getCount()));
@@ -69,17 +70,19 @@ public class PetController {
 
         dogorderService.insertOrder(dogorder);
 
-        return "购买成功";
+        HashMap hashMap = new HashMap();
+        hashMap.put("msg", "购买成功");
+        return hashMap;
     }
 
-    @RequestMapping("/pet/changeView?{petId}")
-    public String getPetChangeView(Model model, @PathVariable("petId") Long petId){
+    @RequestMapping("/pet/changeView")
+    public String getPetChangeView(Model model, @RequestParam("petId") Long petId){
         model.addAttribute("petId",petId);
         return "admin_pet_change";
     }
 
-    @RequestMapping(value = "/pet/changeView?{petId}", method = RequestMethod.POST)
-    public String changePet(Model model, @RequestBody ChangePetVO changePetVO, @PathVariable("petId") Long petId){
+    @RequestMapping(value = "/pet/changeView", method = RequestMethod.POST)
+    public String changePet(Model model, @RequestBody ChangePetVO changePetVO, @RequestParam("petId") Long petId){
         Pet pet = new Pet();
         pet.setPetId(petId);
         pet.setPetName(changePetVO.getPetName());
