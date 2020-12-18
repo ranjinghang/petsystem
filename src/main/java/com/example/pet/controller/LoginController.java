@@ -38,11 +38,11 @@ public class LoginController {
         HashMap<String, String> res = new HashMap<>();
         Login login = loginServcie.login(loginReq.getUserId(), loginReq.getPassword());
         if (login != null){
-            if ("admin".equals(login.getType())){
+            if ("2".equals(login.getType())){
                 httpServletRequest.getSession().setAttribute("admin", login);
                 res.put("stateCode", "1");
                 res.put("msg", "管理员登陆成功！");
-            }else {
+            }else if("1".equals(login.getType())) {
                 httpServletRequest.getSession().setAttribute("user", login);
                 res.put("stateCode", "2");
                 res.put("msg", "用户登陆成功！");

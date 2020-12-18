@@ -10,7 +10,7 @@ package com.example.pet.bean.VO;
 public class ChangePetVO {
     private String petName;
     private String petSpeical;
-    private String price;
+    private String petPrice;
 
     public String getPetName() {
         return petName;
@@ -28,11 +28,11 @@ public class ChangePetVO {
         this.petSpeical = petSpeical;
     }
 
-    public String getPrice() {
-        return price;
+    public String getPetPrice() {
+        return petPrice;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setPetPrice(String petPrice) {
+        this.petPrice = petPrice;
     }
 }

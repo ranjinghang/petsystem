@@ -2,6 +2,7 @@ package com.example.pet.controller;
 import java.math.BigDecimal;
 
 import com.example.pet.bean.Dogorder;
+import com.example.pet.bean.Login;
 import com.example.pet.bean.Pet;
 import com.example.pet.bean.VO.ChangePetVO;
 import com.example.pet.bean.VO.PetBuyVO;
@@ -10,18 +11,11 @@ import com.example.pet.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,10 +52,13 @@ public class PetController {
     }
 
     @RequestMapping(value = "/pet/buy", method = RequestMethod.POST)
-    public Map<String, Object> petBuy(@RequestParam("petId") Long petId, @RequestBody PetBuyVO petBuyVO){
+    @ResponseBody
+    public Map<String, Object> petBuy(@RequestParam("petId") Long petId, @RequestBody PetBuyVO petBuyVO,
+                                      HttpServletRequest httpServletRequest){
         Dogorder dogorder = new Dogorder();
         dogorder.setOrderName("购买订单");
-        dogorder.setUserId("");
+        Login user = (Login) httpServletRequest.getSession().getAttribute("user");
+        dogorder.setUserId(user.getUserId());
         dogorder.setPetId(petId.toString());
         Pet pet = petService.getById(petId);
         String format = "YYYY-MM-dd hh:mm:ss";
@@ -82,16 +79,19 @@ public class PetController {
         return "admin_pet_change";
     }
 
-    @RequestMapping(value = "/pet/changeView", method = RequestMethod.POST)
-    public String changePet(Model model, @RequestBody ChangePetVO changePetVO, @RequestParam("petId") Long petId){
+    @RequestMapping(value = "/pet/change", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> changePet(Model model, @RequestBody ChangePetVO changePetVO, @RequestParam("petId") Long petId){
         Pet pet = new Pet();
         pet.setPetId(petId);
         pet.setPetName(changePetVO.getPetName());
         pet.setPetSpecial(changePetVO.getPetSpeical());
-        pet.setPetPrice(changePetVO.getPrice());
+        pet.setPetPrice(changePetVO.getPetPrice());
 
         petService.save(pet);
-        return "修改成功";
+        HashMap hashMap = new HashMap();
+        hashMap.put("msg", "修改成功");
+        return hashMap;
     }
 
     @RequestMapping("/pet/addView")
@@ -100,13 +100,18 @@ public class PetController {
     }
 
     @RequestMapping(value = "/pet/add", method = RequestMethod.POST)
-    public String petAdd(Model model, @RequestBody ChangePetVO changePetVO){
+    @ResponseBody
+    public Map<String, Object> petAdd(Model model, @RequestBody ChangePetVO changePetVO, HttpServletRequest httpServletRequest){
+        Login admin = (Login) httpServletRequest.getSession().getAttribute("admin");
         Pet pet = new Pet();
         pet.setPetName(changePetVO.getPetName());
         pet.setPetSpecial(changePetVO.getPetSpeical());
-        pet.setPetPrice(changePetVO.getPrice());
-        pet.setAdminId("");
+        pet.setPetPrice(changePetVO.getPetPrice());
+        pet.setAdminId(admin.getUserId());
 
-        return "添加成功";
+        petService.save(pet);
+        HashMap hashMap = new HashMap();
+        hashMap.put("msg", "添加成功");
+        return hashMap;
     }
 }

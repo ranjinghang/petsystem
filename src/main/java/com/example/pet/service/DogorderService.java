@@ -36,7 +36,7 @@ public class DogorderService {
         dogorderDao.deleteById(orderNo);
     }
 
-    public List<Map<String, Object>> getOrderListVO(){
-        return dogorderDao.getOrderListVO();
+    public List<Map<String, Object>> getOrderListVO(String userId){
+        return dogorderDao.getOrderListVO(userId);
     }
 }

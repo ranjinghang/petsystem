@@ -20,7 +20,7 @@ background-attachment: fixed;">
 <div id="header"></div>
 
 <div style="padding: 20px 550px 10px">
-    <form method="post" action="reader_querybook_do.html" class="form-inline" id="searchform">
+<%--    <form method="post" action="reader_querybook_do.html" class="form-inline" id="searchform">
         <div class="input-group">
             <input type="text" placeholder="输入图书名" class="form-control" id="search" name="searchWord"
                    class="form-control">
@@ -37,7 +37,7 @@ background-attachment: fixed;">
                 return false;
             }
         })
-    </script>
+    </script>--%>
 </div>
 <div style="position: relative;top: 10%">
     <c:if test="${!empty succ}">

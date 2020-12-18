@@ -42,14 +42,14 @@ background-attachment: fixed;">
                     <td><c:out value="${jyVO.orderName}"></c:out></td>
                     <td><c:out value="${jyVO.petSpecial}"></c:out></td>
                     <td><c:out value="${jyVO.num}"></c:out></td>
-                    <td><c:out value="${jyVO.carateTime}"></c:out></td>
+                    <td><c:out value="${jyVo.createTime}"></c:out></td>
 
-                    <c:if test="${empty jyVO.status}">
-                        <td><a href="/jy/agree?jyId=<c:out value="${jyVO.jyId}"></c:out>">
+                    <c:if test="${jyVO.agree eq 0}">
+                        <td><a onclick="jy_agree(${jyVO.jyId})">
                             <button type="button" class="btn btn-danger btn-xs">同意申请</button>
                         </a></td>
                     </c:if>
-                    <c:if test="${not empty jyVO.status}">
+                    <c:if test="${jyVO.agree eq 1}">
                         <td>已同意</td>
                     </c:if>
                 </tr>
@@ -57,6 +57,27 @@ background-attachment: fixed;">
             </tbody>
         </table>
     </div>
+
 </div>
+<script>
+    function jy_agree(no) {
+        $.ajax({
+            type: "GET",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/jy/agree?jyId=" + no,//要响应的url
+            data: null,
+            async: false,   //false为同步，true为异步
+            contentType: "application/json",
+            success: function (data) {
+                //表示注册不成功，由于控制器返回的是map，所以就可以用data[key]
+                alert(data.msg);
+                window.location.href = "/order/listView";
+            },
+            error: function (data) {
+                alert(data);
+            }
+        })
+    }
+</script>
 </body>
 </html>

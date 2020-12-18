@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author
@@ -20,11 +21,15 @@ public class JyService {
     @Autowired
     private JyDao jyDao;
 
+    public Jy getOne(Long jyId){
+        return jyDao.getOne(jyId);
+    }
+
     public Jy insertOne(Jy jy){
         return jyDao.save(jy);
     }
 
-    public List<JyListVO> getJyListByAdminId(){
+    public List<Map<String, Object>> getJyListByAdminId(){
         return jyDao.jyViewList();
     }
 }

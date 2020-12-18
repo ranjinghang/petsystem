@@ -3,16 +3,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
-    <title>图书信息添加</title>
+    <title>宠物购买</title>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <script src="/static/js/jquery-3.2.1.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://malsup.github.com/jquery.form.js" /></script>
-    <style>
-        .form-group {
-            margin-bottom: 0;
-        }
-    </style>
     <script>
         $(function () {
             $('#header').load('/reader_header.html');
@@ -26,7 +21,7 @@ background-attachment: fixed;">
 <div id="header"></div>
 <div style="position: relative;padding-top: 60px; width: 80%;margin-left: 10%">
     <form action="#" method="post" id="buypet">
-        <div class="form-group">
+        <div class="form-group" style="margin-bottom: 0">
             <label for="count">数量</label>
             <input type="text" class="form-control" name="count" id="count" placeholder="请输入数量">
         </div>
@@ -52,7 +47,7 @@ background-attachment: fixed;">
                         success: function (data) {
                             //表示注册不成功，由于控制器返回的是map，所以就可以用data[key]
                             alert(data.msg);
-                            window.location.href = "/pet/listView";
+                            window.location.href = "/pet/listView?type=2";
                         },
                         error: function (data) {
                             alert(data);

@@ -18,27 +18,6 @@ background-size:100% 100%;
 background-attachment: fixed;">
 
 <div id="header"></div>
-
-<div style="padding: 20px 550px 10px">
-    <form method="post" action="#" class="form-inline" id="searchform">
-        <div class="input-group">
-            <input type="text" placeholder="订单名" class="form-control" id="search" name="searchWord"
-                   class="form-control">
-            <span class="input-group-btn">
-                <input type="submit" value="搜索" class="btn btn-default">
-            </span>
-        </div>
-    </form>
-    <script>
-        $("#searchform").submit(function () {
-            var val = $("#search").val();
-            if (val == '') {
-                alert("请输入关键字");
-                return false;
-            }
-        })
-    </script>
-</div>
 <div style="position: relative;top: 10%">
     <c:if test="${!empty succ}">
         <div class="alert alert-success alert-dismissable">
@@ -95,7 +74,7 @@ background-attachment: fixed;">
                     </td>
                     <td>
                         <c:if test="${empty order.jyId}">
-                            <a href="/Jy/insert?orderNo=<c:out value="${order.orderNo}"></c:out>">
+                            <a onclick="jy_insert(${order.orderNo})">
                                 <button type="button" class="btn btn-danger btn-xs">申请寄养</button>
                             </a>
                         </c:if>
@@ -119,5 +98,26 @@ background-attachment: fixed;">
         </table>
     </div>
 </div>
+<script>
+    function jy_insert(no) {
+        $.ajax({
+            type: "GET",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/Jy/insert?orderNo=" + no,//要响应的url
+            data: null,
+            async: false,   //false为同步，true为异步
+            contentType: "application/json",
+            success: function (data) {
+                //表示注册不成功，由于控制器返回的是map，所以就可以用data[key]
+                alert(data.msg);
+                window.location.href = "/order/listView";
+            },
+            error: function (data) {
+                alert(data);
+            }
+        })
+    }
+</script>
 </body>
+
 </html>

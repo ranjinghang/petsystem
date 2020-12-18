@@ -16,14 +16,9 @@
                         查看订单
                     </a>
                 </li>
-                <li >
-                    <a href="reader_repasswd.html" >
-                        密码修改
-                    </a>
-                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="reader_info.html">${readercard.name}, 已登录</a></li>
+                <li><a href="reader_info.html">${login.name}, 已登录</a></li>
                 <li><a href="login.html">退出</a></li>
             </ul>
         </div>

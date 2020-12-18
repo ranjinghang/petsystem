@@ -1,6 +1,7 @@
 package com.example.pet.bean;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,6 +14,7 @@ import javax.persistence.Table;
 @Table(name = "jy")
 public class Jy {
     @Id
+    @GeneratedValue()
     private Long jId;
     private Long orderNo;
     private int status;

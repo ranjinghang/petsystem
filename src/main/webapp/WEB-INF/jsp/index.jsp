@@ -52,6 +52,10 @@ background-attachment: fixed;">
             <label for="passwd">密码</label>
             <input type="password" class="form-control" id="passwd" placeholder="请输入密码">
         </div>
+        <div class="form-group">
+            <input name="resultName" type="radio" checked value="1" id="admin" /><label for="admin">管理员</label>
+            <input name="resultName" type="radio" value="0" id="user" /><label for="user">用户</label>
+        </div>
         <div class="checkbox text-left">
             <label>
                 <input type="checkbox" id="remember">记住密码

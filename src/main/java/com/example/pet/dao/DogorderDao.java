@@ -32,7 +32,7 @@ public interface DogorderDao extends JpaRepository<Dogorder, Long> {
             "jy.agree AS agree " +
             "FROM "+
             "dogorder " +
-            "INNER JOIN jy " +
-            "WHERE dogorder.order_no = jy.order_no",nativeQuery = true)
-    List<Map<String,Object>> getOrderListVO();
+            "LEFT JOIN jy ON dogorder.order_no = jy.order_no " +
+            "WHERE dogorder.user_id = ?1",nativeQuery = true)
+    List<Map<String,Object>> getOrderListVO(String userId);
 }

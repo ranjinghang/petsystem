@@ -1,5 +1,7 @@
 package com.example.pet.bean.VO;
 
+import java.math.BigInteger;
+
 /**
  * @author
  * @version V1.0.0
@@ -8,19 +10,19 @@ package com.example.pet.bean.VO;
  * @Copyright All rights reserved.
  */
 public class JyListVO {
-    private Long jyId;
+    private BigInteger jyId;
     private String petName;
     private String orderName;
     private String petSpecial;
-    private int num;
-    private String carateTime;
-    private int status;
+    private Integer num;
+    private String createTime;
+    private Integer agree;
 
-    public Long getJyId() {
+    public BigInteger getJyId() {
         return jyId;
     }
 
-    public void setJyId(Long jyId) {
+    public void setJyId(BigInteger jyId) {
         this.jyId = jyId;
     }
 
@@ -48,27 +50,27 @@ public class JyListVO {
         this.petSpecial = petSpecial;
     }
 
-    public int getNum() {
+    public Integer getNum() {
         return num;
     }
 
-    public void setNum(int num) {
+    public void setNum(Integer num) {
         this.num = num;
     }
 
-    public String getCarateTime() {
-        return carateTime;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setCarateTime(String carateTime) {
-        this.carateTime = carateTime;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
-    public int getStatus() {
-        return status;
+    public Integer getAgree() {
+        return agree;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setAgree(Integer agree) {
+        this.agree = agree;
     }
 }

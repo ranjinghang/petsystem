@@ -25,7 +25,7 @@ background-attachment: fixed;">
 
 <div id="header"></div>
 <div style="position: relative;padding-top: 60px; width: 80%;margin-left: 10%">
-    <form action="/pet/add" method="post" id="petAdd">
+    <form action="#" method="post" id="petAdd">
         <div class="form-group">
             <label for="petName">宠物名称</label>
             <input type="text" class="form-control" name="petName" id="petName" placeholder="请输入宠物名称">
@@ -39,21 +39,36 @@ background-attachment: fixed;">
             <input type="text" class="form-control" name="petPrice" id="petPrice" placeholder="请输入宠物价格">
         </div>
 
-        <input type="submit" value="添加" class="btn btn-success btn-sm" class="text-left">
+        <input id="addSubmit" type="submit" value="添加" class="btn btn-success btn-sm" class="text-left">
         <script>
-            $("#petChange").submit(function () {
-                if ($("#petName").val() == '' || $("#petSpeical").val() == '' || $("#petPrice").val() == '' ){
+            $("#addSubmit").click(function () {
+                var dataStr = {
+                    "petName" : $("#petName").val(),
+                    "petSpeical" : $("#petSpeical").val(),
+                    "petPrice" : $("#petPrice").val()
+                };
+                if ($("#petName").val() == '' || $("#petSpeical").val() == '' || $("#petPrice").val() == '') {
+                    alert("请填入参数！" );
                     return false;
+                }else {
+                    $.ajax({
+                        type: "POST",//方法类型
+                        dataType: "json",//预期服务器返回的数据类型
+                        url: "/pet/add",//要响应的url
+                        data: JSON.stringify(dataStr),
+                        async: false,   //false为同步，true为异步
+                        contentType: "application/json",
+                        success: function (data) {
+                            //表示注册不成功，由于控制器返回的是map，所以就可以用data[key]
+                            alert(data.msg);
+                            window.location.href = "/pet/listView?type=1";
+                        },
+                        error: function (data) {
+                            alert(data);
+                        }
+                    });
                 }
             })
-
-            $(function() {
-                /** 验证文件是否导入成功  */
-                $("#petAdd").ajaxForm(function(data){
-                    setMessage(data);
-                    alert(data);
-                });
-            });
         </script>
     </form>
 </div>
